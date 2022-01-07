@@ -3,25 +3,27 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-7">
-          <h1>Bootstrap 4 Blog - A free template by Bootstrap Temple</h1><a href="#" class="hero-link">Discover More</a>
-        </div>
-      </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
-    </div>
-  </section>
-  <!-- Intro Section -->
-  <section class="intro">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h2 class="h3">Some great intro here</h2>
-          <p class="text-big">Place a nice <strong>introduction</strong> here <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi.</p>
+          <h1>Blog Website</h1><a href="/blog" class="hero-link">Discover More</a>
         </div>
       </div>
     </div>
   </section>
+  <!-- Intro Section -->
+  <section id="intro" class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h2 class="h3">Introduction</h2>
+          <p class="text-big">Users can create, edit or delete blog posts, as well as posting comments on other blogs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!--
   <section class="featured-posts no-padding-top">
     <div class="container">
-      <!-- Post -->
+      // Post
       <div class="row d-flex align-items-stretch">
         <div class="text col-lg-7">
           <div class="text-inner d-flex align-items-center">
@@ -42,7 +44,7 @@
         </div>
         <div class="image col-lg-5"><img src="/assets/img/featured-pic-1.jpeg" alt="..."></div>
       </div>
-      <!-- Post -->
+      // Post
       <div class="row d-flex align-items-stretch">
         <div class="image col-lg-5"><img src="/assets/img/featured-pic-2.jpeg" alt="..."></div>
         <div class="text col-lg-7">
@@ -63,7 +65,7 @@
           </div>
         </div>
       </div>
-      <!-- Post                            -->
+      // Post  
       <div class="row d-flex align-items-stretch">
         <div class="text col-lg-7">
           <div class="text-inner d-flex align-items-center">
@@ -86,12 +88,13 @@
       </div>
     </div>
   </section>
+    -->
   <!-- Divider Section-->
   <section style="background: url(/assets/img/divider-bg.jpg); background-size: cover; background-position: center bottom" class="divider">
     <div class="container">
       <div class="row">
         <div class="col-md-7">
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2><a href="#" class="hero-link">View More</a>
+          <h2>View and edit the list of blog posts.</h2><a href="/admin" class="hero-link">View More</a>
         </div>
       </div>
     </div>
@@ -100,41 +103,20 @@
   <section class="latest-posts"> 
     <div class="container">
       <header> 
-        <h2>Latest from the blog</h2>
-        <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <h2>From the blog</h2>
       </header>
       <div class="row">
-        <div class="post col-md-4">
-          <div class="post-thumbnail"><a href="post.html"><img src="/assets/img/blog-1.jpg" alt="..." class="img-fluid"></a></div>
-          <div class="post-details">
-            <div class="post-meta d-flex justify-content-between">
-              <div class="date">20 May | 2016</div>
-              <div class="category"><a href="#">Business</a></div>
-            </div><a href="post.html">
-              <h3 class="h4">Ways to remember your important ideas</h3></a>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        <div class="post col-md-4" *ngFor="let post of blogPosts">
+          <div class="post-thumbnail">
+            <a [routerLink]="['/post', post._id]"><img src="{{ post.featuredImage }}" alt="..." class="img-fluid"></a>
           </div>
-        </div>
-        <div class="post col-md-4">
-          <div class="post-thumbnail"><a href="post.html"><img src="/assets/img/blog-2.jpg" alt="..." class="img-fluid"></a></div>
           <div class="post-details">
             <div class="post-meta d-flex justify-content-between">
-              <div class="date">20 May | 2016</div>
-              <div class="category"><a href="#">Technology</a></div>
+              <div class="date">{{post.postDate | date:'mediumDate'}}</div>
+              <div class="category"><a href="#">{{ post.tags[0] }}</a></div>
             </div><a href="post.html">
-              <h3 class="h4">Diversity in Engineering: Effect on Questions</h3></a>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          </div>
-        </div>
-        <div class="post col-md-4">
-          <div class="post-thumbnail"><a href="post.html"><img src="/assets/img/blog-3.jpg" alt="..." class="img-fluid"></a></div>
-          <div class="post-details">
-            <div class="post-meta d-flex justify-content-between">
-              <div class="date">20 May | 2016</div>
-              <div class="category"><a href="#">Financial</a></div>
-            </div><a href="post.html">
-              <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3></a>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="h4">{{ post.title }}</h3></a>
+              <div class="textmuted" innerHtml="{{ post.post.substring(post.post.indexOf('<p>'), post.post.indexOf('</p>')+4) }}"></div>
           </div>
         </div>
       </div>
