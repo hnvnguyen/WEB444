@@ -1,6 +1,6 @@
 # Web422A4
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+Visit website: https://quirky-jang-4f303b.netlify.app/home
 
 ## Development server
 
